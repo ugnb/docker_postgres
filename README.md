@@ -1,6 +1,6 @@
 # Docker postgres:latest based image
+This image will restore postgres database dump when container is run.
 ## Usage
-
 Put postgres database dump named `latest.dump` in the same directory with Dockerfile.
 
 Build image:
