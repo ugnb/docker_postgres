@@ -10,3 +10,30 @@ Build image:
 Run container
 
 `docker run --rm -it -e POSTGRES_DB=<DATABASE_NAME> -e POSTGRES_PASSWORD=<POSTGRES_PASSWORD> -p <PORT_ON_HOST>:5433 <IMAGE_NAME>`
+
+## Usage with healthcheck
+Docker compose example with healthcheck:
+
+```
+version: '2.1'
+
+services:
+  web:
+    build: .
+    container_name: web
+    ports:
+      - "80:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+    links:
+      - db
+  db:
+    image: <YOUR_POSTGRES_IMAGE>:latest
+    container_name: db
+    environment:
+      POSTGRES_DB: "dbname"
+      POSTGRES_PASSWORD: "postgres"
+```
