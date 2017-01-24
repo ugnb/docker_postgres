@@ -20,7 +20,6 @@ version: '2.1'
 services:
   web:
     build: .
-    container_name: web
     ports:
       - "80:5000"
     depends_on:
@@ -32,7 +31,6 @@ services:
       - db
   db:
     image: <YOUR_POSTGRES_IMAGE>:latest
-    container_name: db
     environment:
       POSTGRES_DB: "dbname"
       POSTGRES_PASSWORD: "postgres"
